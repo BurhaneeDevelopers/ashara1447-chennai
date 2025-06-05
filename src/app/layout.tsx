@@ -1,17 +1,26 @@
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import localFont from 'next/font/local'
- 
-const myFont = localFont({
-  src: '../../public/fonts/kanz.ttf',
-})
+import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
+import Footer from "@/components/Footer";
 
-export const metadata: Metadata = {
-  title: "Ashara 1447 Chennai",
-  description: "Ashara 1447 Chennai Information Portal",
-};
+export const kanz = localFont({
+  src: "../../public/fonts/kanz.ttf",
+  display: "swap",
+  variable: "--font-kanz",
+});
+
+export const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+});
+
+// export const metadata: Metadata = {
+//   title: "Ashara 1447 Chennai",
+//   description: "Ashara 1447 Chennai Information Portal",
+// };
 
 export default function RootLayout({
   children,
@@ -21,16 +30,19 @@ export default function RootLayout({
   return (
     // <html lang="ar" dir="rtl">
     <html lang="en" dir="">
-      <body className={`${myFont.variable} font-sans antialiased`}>
+      <body
+        className={`${kanz.className} antialiased`}
+      >
         <Image
-          src={"/banner-top-strip.png"}
+          src={"/top-ribbon.svg"}
           alt="Banner Ribbon"
           width={500}
           height={500}
-          className="w-full"
+          className="w-full bg-cover"
         />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
